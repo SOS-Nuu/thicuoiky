@@ -1,0 +1,30 @@
+.row .col {
+    margin: 0px;
+    padding: 0px;
+    border: 2px solid black;
+}
+
+input {
+    width: 350px;
+    height: 35px;
+}
+
+select {
+    width: 350px;
+    height: 35px;
+}
+
+.mauDo {
+    color: red;
+}
+
+.col-normal {
+    width: 10%;
+    /* Điều chỉnh giá trị này tùy theo nhu cầu */
+}
+
+/* Đặt chiều rộng cho cột địa chỉ (colspan="4"), gấp đôi cột bình thường */
+.col-double {
+    width: 20%;
+    /* Gấp đôi chiều rộng của col-normal */
+}

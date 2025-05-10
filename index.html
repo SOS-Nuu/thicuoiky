@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai1</title>
+    <!-- Sử dụng CDN cho Bootstrap 5.3.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- Bootstrap JS Bundle (bao gồm Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let dem = 0;
+            // Tự động focus vào input txtTen khi trang được tải
+            document.getElementById("txtTen").focus();
+
+            // Kiểm tra họ tên khi rời khỏi input
+            document.getElementById("txtTen").addEventListener("blur", function () {
+                let ten = document.getElementById("txtTen").value;
+                let kt = /^([A-Z][a-z]*\s)*([A-Z][a-z]*)$/; // Regex kiểm tra tên
+                let erTen = document.getElementById("erTen");
+
+                if (ten === "") {
+                    erTen.innerHTML = "không được để rỗng";
+                    erTen.classList.add("mauDo");
+                    return false;
+                } else {
+                    if (!kt.test(ten)) {
+                        erTen.innerHTML = "sai cú pháp";
+                        erTen.classList.add("mauDo");
+                        return false;
+                    } else {
+                        erTen.innerHTML = "*";
+                        erTen.classList.remove("mauDo");
+                        return true;
+                    }
+                }
+            });
+
+            // Kiểm tra số điện thoại khi rời khỏi input
+            document.getElementById("txtSDT").addEventListener("blur", function () {
+                let sdt = document.getElementById("txtSDT").value;
+                let kt = /^039\d{7}$/; // Regex kiểm tra số điện thoại
+                let erSDT = document.getElementById("erSDT");
+
+                if (sdt === "") {
+                    erSDT.innerHTML = "không được để rỗng";
+                    erSDT.classList.add("mauDo");
+                    return false;
+                } else {
+                    if (!kt.test(sdt)) {
+                        erSDT.innerHTML = "sai cú pháp (039XXXXXX)";
+                        erSDT.classList.add("mauDo");
+                        return false;
+                    } else {
+                        erSDT.innerHTML = "*";
+                        erSDT.classList.remove("mauDo");
+                        return true;
+                    }
+                }
+            });
+
+            // Kiểm tra ngày sinh (tuổi) khi rời khỏi input
+            document.getElementById("Ngay").addEventListener("blur", function () {
+                let ngay = document.getElementById("Ngay").value;
+                ngay = parseInt(ngay);
+                let erNgay = document.getElementById("erNgay");
+
+                if (isNaN(ngay)) {
+                    erNgay.innerHTML = "ngày không hợp lệ";
+                    erNgay.classList.add("mauDo");
+                    return false;
+                } else {
+                    if (ngay <= 15 || ngay >= 18) {
+                        erNgay.innerHTML = "lớn hơn 15 dưới 18";
+                        erNgay.classList.add("mauDo");
+                        return false;
+                    } else {
+                        erNgay.innerHTML = "*";
+                        erNgay.classList.remove("mauDo");
+                        return true;
+                    }
+                }
+            });
+
+            // Kiểm tra địa chỉ khi rời khỏi input
+            document.getElementById("txtDC").addEventListener("blur", function () {
+                let dc = document.getElementById("txtDC").value;
+                let erDC = document.getElementById("erDC");
+
+                if (dc === "") {
+                    erDC.innerHTML = "không được để rỗng";
+                    erDC.classList.add("mauDo");
+                    return false;
+                } else {
+                    erDC.innerHTML = "*";
+                    erDC.classList.remove("mauDo");
+                    return true;
+                }
+            });
+
+            // Hàm tính học phí dựa trên khóa học
+            function ktKhoa(gt) {
+                if (gt === "2 tuần") {
+                    return 5000000;
+                }
+                if (gt === "4 tuần") {
+                    return 8000000;
+                }
+                if (gt === "6 tuần") {
+                    return 9000000;
+                }
+            }
+
+            // Xử lý sự kiện click nút "Đăng ký"
+            document.getElementById("btnDK").addEventListener("click", function (e) {
+                e.preventDefault(); // Ngăn chặn hành vi mặc định của form
+                dem++;
+                let ten = document.getElementById("txtTen").value;
+                let sdt = document.getElementById("txtSDT").value;
+                let ngaysinh = document.getElementById("Ngay").value;
+                let diachi = document.getElementById("txtDC").value;
+                let khoa = document.getElementById("slKhoa").value;
+                let hphi = ktKhoa(khoa);
+
+                // Thêm dữ liệu vào bảng
+                let them = `<tr><td>${dem}</td><td>${ten}</td><td>Nam</td><td>${sdt}</td><td>${ngaysinh}</td><td>${diachi}</td><td>${khoa}</td><td>${hphi}</td></tr>`;
+                document.getElementById("tBcontent").innerHTML += them;
+
+                // Đóng modal sau khi lưu
+                let modal = document.getElementById("myModal");
+                modal.classList.remove("show");
+                modal.style.display = "none";
+                document.body.classList.remove("modal-open");
+                let backdrop = document.querySelector(".modal-backdrop");
+                if (backdrop) {
+                    backdrop.remove();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <img src="./image/website.png" alt="" width="100%" height="350px">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <nav class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                                data-bs-target="#myModal">Đăng ký</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="18" class="text-center">LIST OF MEMBERS</th>
+                        </tr>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và tên</th>
+                            <th>Giới tính</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày sinh</th>
+                            <th>Đia chỉ</th>
+                            <th>Khóa học</th>
+                            <th>Học phí</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBcontent">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">THÔNG TIN SINH VIÊN</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <table class="p-2">
+                                <tr>
+                                    <td>Họ và tên</td>
+                                    <td>
+                                        <input type="text" id="txtTen">
+                                        <span id="erTen">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại</td>
+                                    <td>
+                                        <input type="text" id="txtSDT">
+                                        <span id="erSDT">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày sinh</td>
+                                    <td>
+                                        <input type="date" id="Ngay">
+                                        <span id="erNgay">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ</td>
+                                    <td>
+                                        <input type="text" id="txtDC">
+                                        <span id="erDC">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bạn muốn tham khảo khóa nào?</td>
+                                    <td>
+                                        <select id="slKhoa">
+                                            <option value="2 tuần">Khóa 2 tuần</option>
+                                            <option value="4 tuần">Khóa 4 tuần</option>
+                                            <option value="6 tuần">Khóa 6 tuàn</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Học phí</td>
+                                    <td>
+                                        <input type="text" id="txtHP" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Anh đại diện</td>
+                                    <td>
+                                        <input type="file" style="width: 350px;height: 35px;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary text-white w-100" data-bs-dismiss="modal"
+                            id="btnDK">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
