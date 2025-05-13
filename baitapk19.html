@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tư Vấn Online</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/baitapk19.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="col-5">
+                <img src="./image/conan.jpg" alt="" height="200px">
+            </div>
+            <div class="col-7">
+                <div class="header-text">
+                    <h1>Tư Vấn Online</h1>
+                    <h3>Bác Sĩ Nhỏ</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <nav class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                                data-bs-target="#bookingModal">Đặt lịch</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="7" class="text-center">DANH SÁCH ĐẶT LỊCH KHÁM</th>
+                        </tr>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã bệnh nhân</th>
+                            <th>Sổ khám bệnh</th>
+                            <th>Ngày đăng ký</th>
+                            <th>Tổng tiền</th>
+                            <th>Loại dịch vụ</th>
+                            <th>option</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="bookingTable"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <p class="footer-info">MSSV-Họ Tên: 123456-Nguyễn Văn A | Lớp: DH18</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Đặt Lịch Khám</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label for="patientId" class="form-label">Mã bệnh nhân *</label>
+                            <input type="text" class="form-control" id="patientId" placeholder="BN-12345">
+                            <span id="patientIdError" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="medicalFile" class="form-label">Sổ khám bệnh *</label>
+                            <input type="file" class="form-control" id="medicalFile">
+                            <span id="medicalFileError" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bookingDate" class="form-label">Ngày đăng ký khám *</label>
+                            <input type="date" class="form-control" id="bookingDate">
+                            <span id="bookingDateError" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Loại dịch vụ</label>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="service1"
+                                    value="Khám theo yêu cầu (400,000 VNĐ)">
+                                <label class="form-check-label" for="service1">Khám theo yêu cầu (400,000 VNĐ)</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="service2"
+                                    value="Điều trị ngoại trú (600,000 VNĐ)">
+                                <label class="form-check-label" for="service2">Điều trị ngoại trú (600,000 VNĐ)</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="service3"
+                                    value="Bác sĩ theo yêu cầu (500,000 VNĐ)">
+                                <label class="form-check-label" for="service3">Bác sĩ theo yêu cầu (500,000 VNĐ)</label>
+                            </div>
+                            <span id="servicesError" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="totalCost" class="form-label">Chuyên khoa</label>
+                            <select class="form-select" id="selectKhoa">
+                                <option for="selectKhoa" value="1">1</option>
+                                <option for="selectKhoa" value="2">2</option>
+                                <option for="selectKhoa" value="3">3</option>
+                                <option for="selectKhoa" value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment">Comments:</label>
+                            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                            <span id="errComment"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Lựa chọn</label>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio1" name="optradio"
+                                    value="option1">
+                                <label class="form-check-label" for="radio1">Option 1</label>
+                                <!-- them checked neu muon tu dong chon  -->
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio2" name="optradio"
+                                    value="option2">
+                                <label class="form-check-label" for="radio2">Option 2</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3"
+                                    disabled>
+                                <label class="form-check-label" for="radio3">Option 3</label>
+                            </div>
+                            <span id="radioError" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="totalCost" class="form-label">Tổng thành tiền</label>
+                            <input type="text" class="form-control" id="totalCost" value="" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-100" form="bookingForm" id="datlich">Đặt
+                        lịch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/baitapk19.js"></script>
+</body>
+
+</html>
