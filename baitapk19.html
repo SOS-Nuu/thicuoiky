@@ -51,13 +51,23 @@
 
                         </tr>
                     </thead>
-                    <tbody id="bookingTable"></tbody>
+                    <tbody id="bookingTable">
+                        <tr>
+                            <td>${dem}</td>
+                            <td>${maBenhNhan}</td>
+                            <td> <img src="${sokham}" alt=""></td>
+                            <td>${dayBoongking}</td>
+                            <td>${total}</td>
+                            <td>${valueLabel}</td>
+                            <td>${radios}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
         <div class="row">
             <div class="col text-center">
-                <p class="footer-info">MSSV-Họ Tên: 123456-Nguyễn Văn A | Lớp: DH18</p>
+                <p class="footer-info">MSSV-Họ Tên: 20115401-Lê Văn Nguyên | Lớp: DH18</p>
             </div>
         </div>
     </div>
@@ -79,8 +89,10 @@
                         </div>
                         <div class="mb-3">
                             <label for="medicalFile" class="form-label">Sổ khám bệnh *</label>
-                            <input type="file" class="form-control" id="medicalFile">
+                            <input type="file" class="form-control" id="medicalFile" accept="image/*">
                             <span id="medicalFileError" class="text-danger"></span>
+                            <img id="medicalFilePreview" src="" alt=""
+                                style="display: none; max-width: 200px; margin-top: 10px;">
                         </div>
                         <div class="mb-3">
                             <label for="bookingDate" class="form-label">Ngày đăng ký khám *</label>
@@ -90,18 +102,15 @@
                         <div class="mb-3">
                             <label class="form-label">Loại dịch vụ</label>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="service1"
-                                    value="Khám theo yêu cầu (400,000 VNĐ)">
+                                <input type="checkbox" class="form-check-input" id="service1" value="400000">
                                 <label class="form-check-label" for="service1">Khám theo yêu cầu (400,000 VNĐ)</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="service2"
-                                    value="Điều trị ngoại trú (600,000 VNĐ)">
+                                <input type="checkbox" class="form-check-input" id="service2" value="600000">
                                 <label class="form-check-label" for="service2">Điều trị ngoại trú (600,000 VNĐ)</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="service3"
-                                    value="Bác sĩ theo yêu cầu (500,000 VNĐ)">
+                                <input type="checkbox" class="form-check-input" id="service3" value="500000">
                                 <label class="form-check-label" for="service3">Bác sĩ theo yêu cầu (500,000 VNĐ)</label>
                             </div>
                             <span id="servicesError" class="text-danger"></span>

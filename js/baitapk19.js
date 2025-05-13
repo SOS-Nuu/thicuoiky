@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // console.log("valueServices:", valueServices);
           // console.log("total:", total);
           // console.log("radios:", radios);
-          let them = `<tr><td>${dem}</td><td>${maBenhNhan}</td><td>${soKham}</td><td>${dayBoongking}</td><td>${total}</td><td>${valueLabel}</td><td>${radios}</td></tr>`;
+          let them = `<tr><td>${dem}</td><td>${maBenhNhan}</td><td><img src="${sokham}" alt=""></td><td>${dayBoongking}</td><td>${total}</td><td>${valueLabel}</td><td>${radios}</td></tr>`;
 
           document.getElementById("bookingTable").innerHTML += them;
 
@@ -206,9 +206,19 @@ document.addEventListener("DOMContentLoaded", function () {
           // document.getElementById("btnDK").removeAttribute("data-bs-dismiss"); // Xóa thuộc tính sau khi đóng
           document.getElementById("patientId").value = "";
           document.getElementById("medicalFile").value = "";
-          document.getElementById("bookingDate").value = "";
-          // document.getElementById("selectKhoa").value = "";
-          // document.querySelector('input[name="optradio"]:checked')?.value = "";
+        document.getElementById("bookingDate").value = "";
+        document.getElementById("comment").value = "";
+
+        // document.getElementById("selectKhoa").value = "";
+        // Reset checkbox
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = false;
+      });
+      // Reset radio
+      document.querySelectorAll('input[name="optradio"]').forEach(radio => {
+          radio.checked = false;
+      });
+        
 
       }
 
